@@ -1,12 +1,12 @@
 #ifndef DIFF_H
 #define DIFF_H
-
+#include <iostream>
 #include <string>
 using namespace std;
 
 class Diff{
 	public:
-	static string computeLCS(string a, string b);
+	static int computeLCSLen(string a, string b);
 };
 
 #endif

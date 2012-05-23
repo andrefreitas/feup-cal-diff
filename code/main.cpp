@@ -5,12 +5,13 @@ using namespace std;
 
 int main(){
 
-	string result, a, b;
-	a = "hello how are you ?";
-	b = "hello who are you ?";
+	string a, b;
+	int len;
+	a = "hello how45454545 are you ?hu7jyihu";
+	b = "hello who4554 are you ?3434343434343";
 
-	result = Diff::computeLCS(a,b);
+	len = Diff::computeLCSLen(a,b);
 
-	cout << "olá mundo" << endl;
+	cout << len << endl;
 	return 0;
 }
