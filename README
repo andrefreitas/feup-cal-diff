@@ -1,0 +1,11 @@
+=== AUTHORS ===
+* André Freitas - p.andrefreitas@gmail.com
+* Tiago Tavares - tiagomctavares@gmail.com
+* Olivier Alves - olivieralves1@gmail.com
+
+=== ABOUT THE PROJECT ===
+This is an implementation of the "diff" utility used in Unix for printing
+the differences between 2 given files.
+
+=== COMPILING ===
+	make 
