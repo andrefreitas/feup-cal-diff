@@ -11,7 +11,7 @@ int main(){
 	words=Diff::splitToWords("O João correu        muito.");
 
 	string diff;
-	diff=Diff::computeLineDiff("O Joao corre mais uma vez","O Mario corre depois");
+	diff=Diff::computeLineDiff("O Joao corre mais uma vez Mario","O Mario corre depois");
 	cout << "Dif: " << diff << endl;
 	return 0;
 }
