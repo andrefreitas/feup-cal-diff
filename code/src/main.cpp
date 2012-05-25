@@ -9,8 +9,9 @@ int main(){
 	vector<string> words;
 
 	words=Diff::splitToWords("O João correu        muito.");
-	for(int unsigned i=0; i<words.size(); i++){
-		cout <<":" << words[i] << ":"<< endl;
-	}
+
+	string diff;
+	diff=Diff::computeLineDiff("O Joao corre mais uma vez","O Mario corre depois");
+	cout << "Dif: " << diff << endl;
 	return 0;
 }
