@@ -3,6 +3,10 @@
 #include <fstream>
 #include "color.h"
 #define DEBUG_MODE 0
+
+int Diff::deletedWords=0;
+int Diff::addedWords=0;
+
 vector<string>  Diff::splitToWords(string line){
 	vector<string> words;
 
@@ -70,6 +74,7 @@ string Diff::computeLineDiff(string line1,string line2){
 		{
 			do{
 				diffLine<<"-";
+				deletedWords++;
 				diffLine<<line1Words[counter1]<< " ";
 				counter1++;
 			}while(counter1<line1Words.size());
@@ -80,6 +85,7 @@ string Diff::computeLineDiff(string line1,string line2){
 				diffLine<<"+";
 				diffLine<<line2Words[counter2]<< " ";
 				counter2++;
+				addedWords++;
 			}while(counter2<line2Words.size());
 		}
 		else{
@@ -91,14 +97,17 @@ string Diff::computeLineDiff(string line1,string line2){
 			// the word doesn't exist
 			else if(!wordsExists(line1Words[counter1],line2Words,counter2)){
 				diffLine<<"-";
+				deletedWords++;
 				diffLine<<line1Words[counter1] << " ";
 				diffLine<<"+";
+				addedWords++;
 				diffLine<<line2Words[counter2] << " ";
 			}
 			// the words exists
 			else {
 				do{
 					diffLine<<"+";
+					addedWords++;
 					diffLine<<line2Words[counter2]<< " ";
 					counter2++;
 				} while(line2Words[counter2]!=line1Words[counter1]);
@@ -162,8 +171,8 @@ vector<string> Diff::readFile(string fileToRead){
 	 cout << "-------------------------------------\n"
 			 "Differences between the 2 files"
 			 "\n-------------------------------------\n";
-	 cout << "Insertions: " << "total de adições" << " ";
-	 cout << "Deletions: " << "total de remoções" << endl;
+	 cout << "Insertions: " << addedWords << " ";
+	 cout << "Deletions: " << deletedWords << endl;
 	 for(int unsigned i=0; i<lineDiffs.size(); i++){
 		 for(int unsigned j=0;j<lineDiffs[i].size(); j++){
 			 if(lineDiffs[i][j]=='=') Color::color(RESET_COLOR) ;

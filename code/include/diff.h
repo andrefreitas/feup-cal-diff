@@ -6,6 +6,9 @@
 using namespace std;
 
 class Diff{
+	static int deletedWords;
+	static int addedWords;
+
 	static vector<string> readFile(string fileToRead);
 	static void normalizeFilesLines(vector<string> &file1, vector<string> &file2);
 	static vector<string> splitToWords(string line);
@@ -16,5 +19,6 @@ class Diff{
 	static void showDiffs(vector<string> lineDiffs);
 
 };
+
 
 #endif

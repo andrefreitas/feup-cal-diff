@@ -5,13 +5,13 @@
 #elif _WIN32
 	#include <windows.h>
 	#define GREEN "2"
-	#define RED "11"
-	#define RESET_COLOR "8"
+	#define RED "4"
+	#define RESET_COLOR "7"
 #elif _WIN64
 	#include <windows.h>
 	#define GREEN "2"
-	#define RED "11"
-	#define RESET_COLOR "8"
+	#define RED "4"
+	#define RESET_COLOR "7"
 #endif
 
 #include <iostream>
