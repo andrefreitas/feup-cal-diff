@@ -8,22 +8,27 @@ using namespace std;
 int main(int argc, char *argv[]){
 	vector<string> diffs;
 
-	if(argc==0) {
-
-		diffs=Diff::computeFilesDiff("a.txt","b.txt");
+	if(argc==1) {
+		string input1, input2;
+		cout<<"File1: ";
+		cin>>input1;
+		cout<<"File2: ";
+		cin>>input2;
+		diffs=Diff::computeFilesDiff(input1,input2);
 		Diff::showDiffs(diffs);
 
-	}else if(argc == 2) {
+	}else if(argc==3) {
 
 		diffs=Diff::computeFilesDiff(argv[1],argv[2]);
 		Diff::showDiffs(diffs);
 
 	}else {
 
-		cout<<"Wrong number of arguments"<<endl;
+		cout<<"Wrong number of arguments";
 
 	}
 
+	cout<<endl; //Added because of buffer error
 	#ifdef _WIN32
 		getchar();
 	#elif _WIN64
