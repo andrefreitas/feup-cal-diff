@@ -13,6 +13,7 @@ class Diff{
 	public:
 	static string computeLineDiff(string line1,string line2);
 	static vector<string> computeFilesDiff(string file1, string file2);
+	static void showDiffs(vector<string> lineDiffs);
 
 };
 

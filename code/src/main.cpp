@@ -2,15 +2,12 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-
+#include "color.h"
 using namespace std;
 
 int main(){
 	vector<string> diffs;
 	diffs=Diff::computeFilesDiff("a.txt","b.txt");
-
-	for(int unsigned i=0; i<diffs.size(); i++){
-		cout << diffs[i] << endl;
-	}
+	Diff::showDiffs(diffs);
 	return 0;
 }

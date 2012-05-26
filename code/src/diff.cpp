@@ -1,6 +1,7 @@
 #include "diff.h"
 #include <sstream>
 #include <fstream>
+#include "color.h"
 #define DEBUG_MODE 0
 vector<string>  Diff::splitToWords(string line){
 	vector<string> words;
@@ -155,4 +156,22 @@ vector<string> Diff::readFile(string fileToRead){
 	}
 	else cout << "ERROR FILE NOT FOUND" << endl;
 	return fileLines;
+}
+
+ void Diff::showDiffs(vector<string> lineDiffs){
+	 cout << "-------------------------------------\n"
+			 "Differences between the 2 files"
+			 "\n-------------------------------------\n";
+	 cout << "Insertions: " << "total de adições" << " ";
+	 cout << "Deletions: " << "total de remoções" << endl;
+	 for(int unsigned i=0; i<lineDiffs.size(); i++){
+		 for(int unsigned j=0;j<lineDiffs[i].size(); j++){
+			 if(lineDiffs[i][j]=='=') Color::color(RESET_COLOR) ;
+			 else if (lineDiffs[i][j]=='+') Color::color(GREEN) ;
+			 else if (lineDiffs[i][j]=='-') Color::color(RED) ;
+			 else cout << lineDiffs[i][j];
+		 }
+		 cout << "\n";
+	 }
+	 Color::color(RESET_COLOR) ;
 }

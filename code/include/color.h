@@ -1,5 +1,7 @@
 #ifdef __linux__
-	enum COLORS { RESET_COLOR="\033[0m", RED="\033[0;31m", GREEN="\033[0;32m"};
+	#define RESET_COLOR "\033[0m"
+	#define GREEN "\e[32m"
+	#define RED "\e[31m"
 #elif _WIN32
 	#include <windows.h>
 	#define GREEN "2"

@@ -1,4 +1,6 @@
 #include "color.h"
+#include <iostream>
+using namespace std;
 
 void Color::color(std::string color) {
 	#ifdef __linux__
