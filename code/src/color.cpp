@@ -1,24 +1,22 @@
 #include "color.h"
 
-void Color::changeTextColor(int color) {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+void Color::color(std::string color) {
+	#ifdef __linux__
+		cout<<color;
+	#elif _WIN32
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), atoi(color.c_str()));
+	#elif _WIN64
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), atoi(color.c_str()));
+	#endif
+
 }
 
-
-void Color::changeTextColor(int color, std::string print, bool line) {
-	changeTextColor(color);
+void Color::color(std::string color, std::string print, bool line) {
+	Color::color(color);
 	std::cout<<print;
 
 	if(line)
 		std::cout<<std::endl;
 
-	changeTextColor(colorDefault);
-}
-
-void Color::showAllColors() {
-	std::cout << "All Colors:" << std::endl;
-	for(int i=0; i<=maxColors; i++) {
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), i);
-		std::cout <<i<<": All Colors." << std::endl;
-	}
+	Color::color(RESET_COLOR);
 }
