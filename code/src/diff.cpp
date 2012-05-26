@@ -1,5 +1,6 @@
 #include "diff.h"
 #include <sstream>
+#include <fstream>
 #define DEBUG_MODE 0
 vector<string>  Diff::splitToWords(string line){
 	vector<string> words;
@@ -109,4 +110,49 @@ string Diff::computeLineDiff(string line1,string line2){
 		counter1++; counter2++;
 	} while(counter1<line1Words.size() || counter2<line2Words.size());
 	return diffLine.str();
+}
+
+
+vector<string> Diff::computeFilesDiff(string file1, string file2){
+	vector<string> lineDiffs;
+	vector<string> file1Lines, file2Lines;
+
+	// (1) Fetch all the lines
+	file1Lines=readFile(file1);
+	file2Lines=readFile(file2);
+
+	// (2) Normalize the number of lines if necessary
+	normalizeFilesLines(file1Lines,file2Lines);
+	normalizeFilesLines(file2Lines,file1Lines);
+
+	// (3) Compute all the diffs
+	for(int unsigned i=0; i<file1Lines.size();i++){
+		lineDiffs.push_back(computeLineDiff(file1Lines[i],file2Lines[i]));
+	}
+
+	return lineDiffs;
+
+
+}
+void Diff::normalizeFilesLines(vector<string> &file1, vector<string> &file2){
+	if(file1.size()<file2.size()) {
+			int unsigned missingLines=file2.size()-file1.size();
+			for(int unsigned i=0; i<missingLines;i++){
+				file1.push_back("");
+			}
+		}
+}
+
+vector<string> Diff::readFile(string fileToRead){
+	vector<string> fileLines;
+	ifstream file(fileToRead.c_str());
+	if(file){
+		string line;
+		while(getline(file, line)){
+			fileLines.push_back(line);
+			//cout << line << endl;
+		}
+	}
+	else cout << "ERROR FILE NOT FOUND" << endl;
+	return fileLines;
 }

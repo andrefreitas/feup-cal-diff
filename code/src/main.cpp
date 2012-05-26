@@ -6,12 +6,11 @@
 using namespace std;
 
 int main(){
-	vector<string> words;
+	vector<string> diffs;
+	diffs=Diff::computeFilesDiff("a.txt","b.txt");
 
-	words=Diff::splitToWords("O João correu        muito.");
-
-	string diff;
-	diff=Diff::computeLineDiff("O Joao corre mais uma vez Mario","O Mario corre depois");
-	cout << "Dif: " << diff << endl;
+	for(int unsigned i=0; i<diffs.size(); i++){
+		cout << diffs[i] << endl;
+	}
 	return 0;
 }
