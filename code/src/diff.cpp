@@ -127,6 +127,9 @@ vector<string> Diff::computeFilesDiff(string file1, string file2){
 	vector<string> lineDiffs;
 	vector<string> file1Lines, file2Lines;
 
+	//Initialize counters
+	deletedWords = addedWords = 0;
+
 	// (1) Fetch all the lines
 	file1Lines=readFile(file1);
 	file2Lines=readFile(file2);
