@@ -7,6 +7,10 @@
 int Diff::deletedWords=0;
 int Diff::addedWords=0;
 
+double Diff::startClock=0;
+double Diff::endClock=0;
+
+
 vector<string>  Diff::splitToWords(string line){
 	vector<string> words;
 
@@ -124,6 +128,7 @@ string Diff::computeLineDiff(string line1,string line2){
 
 
 vector<string> Diff::computeFilesDiff(string file1, string file2){
+	startClock= clock()/(float)CLOCKS_PER_SEC;
 	vector<string> lineDiffs;
 	vector<string> file1Lines, file2Lines;
 
@@ -142,10 +147,8 @@ vector<string> Diff::computeFilesDiff(string file1, string file2){
 	for(int unsigned i=0; i<file1Lines.size();i++){
 		lineDiffs.push_back(computeLineDiff(file1Lines[i],file2Lines[i]));
 	}
-
+	 endClock= clock()/(float)CLOCKS_PER_SEC;
 	return lineDiffs;
-
-
 }
 void Diff::normalizeFilesLines(vector<string> &file1, vector<string> &file2){
 	if(file1.size()<file2.size()) {
@@ -166,16 +169,18 @@ vector<string> Diff::readFile(string fileToRead){
 			//cout << line << endl;
 		}
 	}
-	else cout << "ERROR FILE NOT FOUND" << endl;
+	else {
+		throw invalidFileNameException(fileToRead);
+	}
 	return fileLines;
 }
 
  void Diff::showDiffs(vector<string> lineDiffs){
-	 cout << "-------------------------------------\n"
-			 "Differences between the 2 files"
-			 "\n-------------------------------------\n";
+	 cout << "\n-------------------------------------\n";
 	 cout << "Insertions: " << addedWords << " ";
-	 cout << "Deletions: " << deletedWords << endl;
+	 cout << "Deletions: " << deletedWords ;
+	 cout << "\n-------------------------------------\n";
+
 	 for(int unsigned i=0; i<lineDiffs.size(); i++){
 		 for(int unsigned j=0;j<lineDiffs[i].size(); j++){
 			 if(lineDiffs[i][j]=='=') Color::color(RESET_COLOR) ;
@@ -186,4 +191,16 @@ vector<string> Diff::readFile(string fileToRead){
 		 cout << "\n";
 	 }
 	 Color::color(RESET_COLOR) ;
+	 cout << "-------------------------------------\n";
+	 cout << "Time taken to compute: " << endClock-startClock << " seconds";
+
+
+}
+
+invalidFileNameException::invalidFileNameException(string file){
+	this->file=file;
+ }
+
+string invalidFileNameException::getFileName(){
+	return file;
 }

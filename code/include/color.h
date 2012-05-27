@@ -16,7 +16,7 @@
 
 #include <iostream>
 
-//14 Colors Index: 1-14
+// A class with static methods for changing the
 
 class Color {
 public:

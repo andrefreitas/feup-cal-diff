@@ -3,12 +3,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <time.h>
 using namespace std;
 
 class Diff{
 	static int deletedWords;
 	static int addedWords;
-
+	static double startClock;
+	static double endClock;
 	static vector<string> readFile(string fileToRead);
 	static void normalizeFilesLines(vector<string> &file1, vector<string> &file2);
 	static vector<string> splitToWords(string line);
@@ -20,5 +22,11 @@ class Diff{
 
 };
 
+class invalidFileNameException{
+	string file;
+public:
+	invalidFileNameException(string file);
+	string getFileName();
+};
 
 #endif
