@@ -29,4 +29,6 @@ public:
 	string getFileName();
 };
 
+void cls();
+
 #endif

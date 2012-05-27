@@ -32,14 +32,16 @@ int main(int argc, char *argv[]){
 		Color::color(RED);
 		cout << "Invalid filename: " << f.getFileName();
 		Color::color(RESET_COLOR);
+		getchar();
 	}
 
 	cout<<endl; //Added because of buffer error
-#ifdef _WIN32
+	
+	#ifdef _WIN32
+		getchar();
+	#elif _WIN64
+		getchar();
+	#endif
 	getchar();
-#elif _WIN64
-	getchar();
-#endif
-
 	return 0;
 }

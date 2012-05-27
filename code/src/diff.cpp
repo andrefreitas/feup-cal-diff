@@ -176,9 +176,15 @@ vector<string> Diff::readFile(string fileToRead){
 }
 
  void Diff::showDiffs(vector<string> lineDiffs){
+	cls();
 	 cout << "\n-------------------------------------\n";
-	 cout << "Insertions: " << addedWords << " ";
-	 cout << "Deletions: " << deletedWords ;
+	 if(addedWords==0 && deletedWords==0){
+			cout << "The files are equal";
+		}
+	else{
+		cout << "Insertions: " << addedWords << " ";
+		cout << "Deletions: " << deletedWords ;
+	 }
 	 cout << "\n-------------------------------------\n";
 
 	 for(int unsigned i=0; i<lineDiffs.size(); i++){
@@ -204,3 +210,12 @@ invalidFileNameException::invalidFileNameException(string file){
 string invalidFileNameException::getFileName(){
 	return file;
 }
+void cls(){
+#ifdef __linux__
+	system("clear");
+#elif _WIN32
+	system("cls");
+#elif _WIN64
+	system("cls");
+#endif
+};
