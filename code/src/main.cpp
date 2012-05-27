@@ -6,6 +6,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
+    Color::color(RESET_COLOR);
 	vector<string> diffs;
 	// if no files are given, ask them
 	try{
@@ -39,9 +40,12 @@ int main(int argc, char *argv[]){
 	
 	#ifdef _WIN32
 		getchar();
+        getchar();
 	#elif _WIN64
+        getchar();
 		getchar();
+    #elif __linux__
+        getchar();
 	#endif
-	getchar();
 	return 0;
 }

@@ -3,7 +3,9 @@
 using namespace std;
 
 void Color::color(std::string color) {
-	#ifdef __linux__
+     #ifdef __APPLE__
+        cout<<color;
+    #elif __linux__
 		cout<<color;
 	#elif _WIN32
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), atoi(color.c_str()));

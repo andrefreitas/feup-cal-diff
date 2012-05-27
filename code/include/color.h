@@ -1,4 +1,8 @@
-#ifdef __linux__
+ #ifdef __APPLE__
+    #define RESET_COLOR "\e[1;30m"
+    #define GREEN "\e[1;32m"
+    #define RED "\e[1;31m"
+#elif __linux__
 	#define RESET_COLOR "\033[0m"
 	#define GREEN "\e[32m"
 	#define RED "\e[31m"
@@ -11,7 +15,7 @@
 	#include <windows.h>
 	#define GREEN "2"
 	#define RED "4"
-	#define RESET_COLOR "7"
+	#define RESET_COLOR "7" 
 #endif
 
 #include <iostream>
