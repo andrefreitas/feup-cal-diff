@@ -211,8 +211,14 @@ string invalidFileNameException::getFileName(){
 	return file;
 }
 void cls(){
-#ifdef __linux__
-	system("clear");
+#ifdef __APPLE__
+	 // Credit goes to http://snipplr.com/view/15319/hacky-screen-clearing-through-printf/
+	   printf("\033[2J\033[0;0f");
+	   printf("\033[%d;%df", 0, 0);
+#elif __linux__
+	 // Credit goes to http://snipplr.com/view/15319/hacky-screen-clearing-through-printf/
+	   printf("\033[2J\033[0;0f");
+	   printf("\033[%d;%df", 0, 0);
 #elif _WIN32
 	system("cls");
 #elif _WIN64
