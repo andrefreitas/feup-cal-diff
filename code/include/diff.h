@@ -78,6 +78,7 @@ class Diff{
 	 * @param lineDiffs a vector of diff strings
 	 */
 	static void showDiffs(vector<string> lineDiffs);
+	static void saveDiffToFile(vector<string> linesToSave);
 
 };
 
@@ -97,6 +98,15 @@ public:
 	 */
 	string getFileName();
 };
+
+
+class openingFileFailException{
+	string file;
+public:
+	openingFileFailException(string file);
+	string getFileName();
+};
+
 /**
  * Clears the screen (cross platform)
  */

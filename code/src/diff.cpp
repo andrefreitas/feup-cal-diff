@@ -212,11 +212,40 @@ vector<string> Diff::readFile(string fileToRead){
 
 }
 
+void Diff::saveDiffToFile(vector<string> linesToSave){
+	string fileName;
+	cout << "Name of the file: ";
+	cin >> fileName;
+
+	string const filePath("./" + fileName);
+
+	ofstream myFlux(filePath.c_str());
+
+	    if(myFlux)
+	    {
+	    	for(unsigned int i = 0; i < linesToSave.size(); i++){
+	    		myFlux << linesToSave[i];
+	    	}
+	    }
+	    else
+	    {
+	        throw openingFileFailException(fileName);
+	    }
+}
+
 invalidFileNameException::invalidFileNameException(string file){
 	this->file=file;
  }
 
 string invalidFileNameException::getFileName(){
+	return file;
+}
+
+openingFileFailException::openingFileFailException(string file){
+	this->file=file;
+ }
+
+string openingFileFailException::getFileName(){
 	return file;
 }
 void cls(){
