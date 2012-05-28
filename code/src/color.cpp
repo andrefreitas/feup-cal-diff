@@ -1,3 +1,9 @@
+ /****************************************************************************
+ * Author:      - André Freitas, p.andrefreitas@gmail.com
+ * Author:      - Tiago Tavares, tiagomctavares@gmail.com
+ * Author:      - Olivier Alves, olivieralves1@gmail.com
+ * Copyright:   - 29/05/2012, CAL, FEUP
+ ****************************************************************************/
 #include "color.h"
 #include <iostream>
 using namespace std;
