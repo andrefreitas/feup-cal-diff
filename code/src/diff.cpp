@@ -16,6 +16,9 @@ int Diff::addedWords=0;
 double Diff::startClock=0;
 double Diff::endClock=0;
 
+string  Diff::wordInserted = "+";
+string  Diff::wordDeleted = "_";
+string  Diff::wordEqual = "=";
 
 vector<string>  Diff::splitToWords(string line){
 	vector<string> words;
@@ -83,7 +86,7 @@ string Diff::computeLineDiff(string line1,string line2){
 		if(counter2>=line2Words.size() && counter1<line1Words.size())
 		{
 			do{
-				diffLine<<"-";
+				diffLine<<wordDeleted;
 				deletedWords++;
 				diffLine<<line1Words[counter1]<< " ";
 				counter1++;
@@ -92,7 +95,7 @@ string Diff::computeLineDiff(string line1,string line2){
 		// the line 2 is greater than 1
 		else if(counter1>=line1Words.size() && counter2<line2Words.size()){
 			do{
-				diffLine<<"+";
+				diffLine<<wordInserted;
 				diffLine<<line2Words[counter2]<< " ";
 				counter2++;
 				addedWords++;
@@ -101,27 +104,27 @@ string Diff::computeLineDiff(string line1,string line2){
 		else{
 			// both the words are equal
 			if(line1Words[counter1]==line2Words[counter2]){
-				diffLine<<"=";
+				diffLine<<wordEqual;
 				diffLine<<line1Words[counter1] << " ";
 			}
 			// the word doesn't exist
 			else if(!wordsExists(line1Words[counter1],line2Words,counter2)){
-				diffLine<<"-";
+				diffLine<<wordDeleted;
 				deletedWords++;
 				diffLine<<line1Words[counter1] << " ";
-				diffLine<<"+";
+				diffLine<<wordInserted;
 				addedWords++;
 				diffLine<<line2Words[counter2] << " ";
 			}
 			// the words exists
 			else {
 				do{
-					diffLine<<"+";
+					diffLine<<wordInserted;
 					addedWords++;
 					diffLine<<line2Words[counter2]<< " ";
 					counter2++;
 				} while(line2Words[counter2]!=line1Words[counter1]);
-				diffLine<<"=";
+				diffLine<<wordEqual;
 				diffLine<< line1Words[counter1] << " ";
 			}
 
@@ -195,9 +198,9 @@ vector<string> Diff::readFile(string fileToRead){
 
 	 for(int unsigned i=0; i<lineDiffs.size(); i++){
 		 for(int unsigned j=0;j<lineDiffs[i].size(); j++){
-			 if(lineDiffs[i][j]=='=') Color::color(RESET_COLOR) ;
-			 else if (lineDiffs[i][j]=='+') Color::color(GREEN) ;
-			 else if (lineDiffs[i][j]=='-') Color::color(RED) ;
+			 if(lineDiffs[i][j]==wordEqual[0]) Color::color(RESET_COLOR) ;
+			 else if (lineDiffs[i][j]==wordInserted[0]) Color::color(GREEN) ;
+			 else if (lineDiffs[i][j]==wordDeleted[0]) Color::color(RED) ;
 			 else cout << lineDiffs[i][j];
 		 }
 		 cout << "\n";

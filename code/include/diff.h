@@ -16,11 +16,13 @@ using namespace std;
  * It represents the insertions and deletions from a file to other, using colors.
  */
 class Diff{
-
-	static int deletedWords;	/* The number of deleted words */
-	static int addedWords;		/* The number of added words */
-	static double startClock;	/* The cpu number of clocks before computing the diffs */
-	static double endClock;	/* The cpu number of clocks after computing the diffs */
+	static string wordInserted;      	    /* The character used to indicate a new word */
+	static string wordDeleted;    			/* The character used do indicate a deleted word */
+	static string wordEqual;				/* The character used to indicates a equal word */
+	static int deletedWords;				/* The number of deleted words */
+	static int addedWords;					/* The number of added words */
+	static double startClock;				/* The cpu number of clocks before computing the diffs */
+	static double endClock;				/* The cpu number of clocks after computing the diffs */
 
 	/**
 	 * Reads a given file and fetch it as a vector of lines (strings)
