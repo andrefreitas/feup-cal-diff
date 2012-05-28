@@ -19,6 +19,7 @@ class Diff{
 	static string computeLineDiff(string line1,string line2);
 	static vector<string> computeFilesDiff(string file1, string file2);
 	static void showDiffs(vector<string> lineDiffs);
+	static void saveDiffToFile(vector<string> linesToSave);
 
 };
 
@@ -26,6 +27,14 @@ class invalidFileNameException{
 	string file;
 public:
 	invalidFileNameException(string file);
+	string getFileName();
+};
+
+
+class openingFileFailException{
+	string file;
+public:
+	openingFileFailException(string file);
 	string getFileName();
 };
 
